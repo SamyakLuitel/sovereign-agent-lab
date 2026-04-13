@@ -42,47 +42,96 @@ Conversation 3 (out of scope):
 # ── Conversation 1: Happy path ─────────────────────────────────────────────
 
 CONVERSATION_1_TRACE = """
-PASTE YOUR rasa shell TERMINAL OUTPUT HERE
+Your input ->  I'm calling to confirm a booking               
+How many guests are you confirming for tonight's event?
+Your input ->  160 guests                         
+And how many of those guests will need vegan meals?
+Your input ->  about 50 of them need vegan        
+What deposit amount in GBP are you proposing to secure the booking?
+Your input ->  200 pounds                         
+Thank you — booking confirmed. 160 guests, 50 requiring vegan meals, £200 deposit accepted. I'll send written confirmation to the organiser shortly.
+Is there anything else I can help you with?
 """
 
-CONVERSATION_1_OUTCOME = "FILL_ME_IN"   # "confirmed" or "escalated"
+CONVERSATION_1_OUTCOME = "confirmed"   # "confirmed" or "escalated"
 
 # ── Conversation 2: Deposit too high ───────────────────────────────────────
 
 CONVERSATION_2_TRACE = """
-PASTE YOUR rasa shell TERMINAL OUTPUT HERE
+Your input ->  I'm calling to confirm a booking
+How many guests are you confirming for tonight's event?
+Your input ->  160 guests
+And how many of those guests will need vegan meals?
+Your input ->  50 guests
+What deposit amount in GBP are you proposing to secure the booking?
+Your input ->  500 pounds
+I need to check one thing with the organiser before I can confirm. The issue is: 
+a deposit of £500 exceeds the organiser's authorised limit of £300. Can I call you back within 15 minutes?
+Is there anything else I can help you with?
 """
 
-CONVERSATION_2_OUTCOME = "FILL_ME_IN"   # "confirmed" or "escalated"
-CONVERSATION_2_REASON  = "FILL_ME_IN"   # the reason the agent gave for escalating
+CONVERSATION_2_OUTCOME = "escalated"   # "confirmed" or "escalated"
+CONVERSATION_2_REASON  = "Deposit exceeds authorised limit"   # the reason the agent gave for escalating
 
 # ── Conversation 3: Out of scope ───────────────────────────────────────────
 
 CONVERSATION_3_TRACE = """
-PASTE YOUR rasa shell TERMINAL OUTPUT HERE
+Your input ->  I'm calling to confirm a booking
+How many guests are you confirming for tonight's event?
+Your input ->  160 guests
+And how many of those guests will need vegan meals?
+Your input ->  can you arrange parking for the speakers
+I can only help with confirming tonight's venue booking. For anything else, 
+please contact the event organiser directly.
+Would you like to continue with confirm booking?
 """
 
 # Describe what CALM did after the out-of-scope message. Min 20 words.
 CONVERSATION_3_WHAT_HAPPENED = """
-FILL ME IN
+CALM was able to recognize the requesst from the user is out of scope that it cannot 
+arrange the parking for the speakers , it clearly stated its boundaries and directed the user to contact the 
+event organizer and continued with the confirm booking flow.
 """
 
 # Compare Rasa CALM's handling of the out-of-scope request to what
 # LangGraph did in Exercise 2 Scenario 3. Min 40 words.
 OUT_OF_SCOPE_COMPARISON = """
-FILL ME IN
+While both Rasa CALM and LangGraph recognized that the user's request was out of scope and provided a response 
+indicating it would be able to fullfill the request , the handling was diffrent . Rasa CALM used a structured flow 
+and it was able to continue with the confirmattion process after addressing out of scope request while the 
+Langchain agent relied on the ressoning to find out that it cannot fuldill the request even though explicit flow for the 
+case was defined.
 """
 
 # ── Task B: Cutoff guard ───────────────────────────────────────────────────
 
-TASK_B_DONE = None   # True or False
+TASK_B_DONE = True   # True or False
 
 # List every file you changed.
-TASK_B_FILES_CHANGED = []
+TASK_B_FILES_CHANGED = ["exercise3_rasa/actions/actions.py"]
 
 # How did you test that it works? Min 20 words.
 TASK_B_HOW_YOU_TESTED = """
-FILL ME IN
+I tested the cutoff guird my trying to test rasa for this i uncommented the cutoff gurd code and also added a temprary condition
+ that is always true to make sure that the cutoff guard is triggered and then i ran the rasa action server and then i called the 
+ confirm booking flow and i was able to see the escalation message related to the cutoff guard in the response which indicates 
+ that the cutoff guard is working as expected.
+  #  if True:   # TEMPORARY TESTING CONDITION 
+
+  #           return escalate(
+  #               "it is past 16:45 — insufficient time to process the confirmation"
+  #               " before the 5 PM deadline"
+  #           )
+
+
+  i reverted to the real time condition after testing.
+  now = datetime.datetime.now()
+        if now.hour > 16 or (now.hour == 16 and now.minute >= 45):
+            return escalate(
+                "it is past 16:45 — insufficient time to process the confirmation"
+                " before the 5 PM deadline"
+            )
+            
 """
 
 # ── CALM vs Old Rasa ───────────────────────────────────────────────────────
