@@ -76,11 +76,18 @@ to maintain as you can add or remove tools without changing the agent code.
 #     ambiguous task.
 
 WEEK_5_ARCHITECTURE = """
-- FILL ME IN
-- FILL ME IN
-- FILL ME IN
-- FILL ME IN
-- FILL ME IN
+- The architecture would consist of a Planner , a shared MPC tool server  , an Executor, Coordinator, and the Structured Rasa CALM flow for the agent, 
+
+- The Planner will use some strong reasoning model and take the input from whatsapp from the user.
+
+- The executor will be a ReAct agent and will be made using langgraph and this will call MCP tools and handle failures if any like venue being full.
+
+- The MCP server will serve as tool to provide single source of truth to executor and also to the structured flow 
+
+- The Structured flow will have access to the shared MCP tools and will have an extended knowledge base with RAG
+
+- The Coordinator  this will act as a coordination layer that detects when the Executor has confirmed the venue and triggers the Structured flow to take over.
+
 """
 
 # ── The guiding question ───────────────────────────────────────────────────
@@ -88,5 +95,7 @@ WEEK_5_ARCHITECTURE = """
 # Must reference specific things you observed in your runs. Min 60 words.
 
 GUIDING_QUESTION_ANSWER = """
-FILL ME IN
+The LangGraph reAct agent will be better for research as it is able to reason and also handle non deterministic workflow better . I can independently decide relevant tool calling to see what it can do or not based on the experiment i did in the earlier exercise 
+I think Rasa CALM agent suits for the call because the call is for a commitment and the structured flow forces a hard rule that cannot be overridden by a probabilistic model.While running the Rasa flow it was able to stop when the deposit exceeded the max amount 
+or when I experimented with the time and it stopped such type of hard validation flow is good for the flow 
 """
