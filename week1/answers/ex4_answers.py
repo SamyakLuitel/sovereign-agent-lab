@@ -7,20 +7,22 @@ Fill this in after running exercise4_mcp_client.py.
 # ── Basic results ──────────────────────────────────────────────────────────
 
 # Tool names as shown in "Discovered N tools" output.
-TOOLS_DISCOVERED = []
+TOOLS_DISCOVERED = [ "search_venues","get_venue_details"]
 
-QUERY_1_VENUE_NAME    = "FILL_ME_IN"
-QUERY_1_VENUE_ADDRESS = "FILL_ME_IN"
-QUERY_2_FINAL_ANSWER  = "FILL_ME_IN"
+QUERY_1_VENUE_NAME    = "The Haymarket Vaults"
+QUERY_1_VENUE_ADDRESS = "1 Dalry Road, Edinburgh"
+QUERY_2_FINAL_ANSWER  = "It seems there are no Edinburgh venues currently available that can accommodate 300 guests with vegan options. Would you like to:\n\n1. Try a lower minimum capacity (e.g., 250 people)?\n2. Check for venues with vegetarian options instead?\n3. See available venues without dietary filters?\n\nLet me know how you'd like to adjust the search."
 
 # ── The experiment ─────────────────────────────────────────────────────────
 # Required: modify venue_server.py, rerun, revert.
 
-EX4_EXPERIMENT_DONE = None   # True or False
+EX4_EXPERIMENT_DONE = True   # True or False
 
 # What changed, and which files did or didn't need updating? Min 30 words.
 EX4_EXPERIMENT_RESULT = """
-FILL ME IN
+After changing  the he Albanach's status to 'full' in mcp_venue_server.py, it
+disappeared entirely from Query 1's search results  and  the tool returned only
+one match (The Haymarket Vaults) instead of two.
 """
 
 # ── MCP vs hardcoded ───────────────────────────────────────────────────────
@@ -30,7 +32,11 @@ LINES_OF_TOOL_CODE_EX4 = 0   # count in exercise4_mcp_client.py
 
 # What does MCP buy you beyond "the tools are in a separate file"? Min 30 words.
 MCP_VALUE_PROPOSITION = """
-FILL ME IN
+In exercise 2 , the tools were imported from another file venue_tools.py  and adding or importing new tools 
+means editing the venue_tools.py file and then importing it in the exercise2_langgraph.py file while in exercise 4
+ with the MCP client there is no need to edit any file to add a new tool as long as it is discoverable by the MCP server
+and it is registered in the server it can be used by the agent without any code change which makes it more flexible and easier 
+to maintain as you can add or remove tools without changing the agent code.
 """
 
 # ── PyNanoClaw architecture — SPECULATION QUESTION ─────────────────────────
