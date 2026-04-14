@@ -95,7 +95,7 @@ None of the known Edinburgh venues can accommodate 300 people with vegan options
 
 # Scenario 3: out of scope (train times)
 # Did the agent try to call a tool?
-SCENARIO_3_TRIED_A_TOOL = None   # True or False
+SCENARIO_3_TRIED_A_TOOL = False   # True or False
 
 SCENARIO_3_RESPONSE = "I don't have access to real-time train schedules or transportation data. For the most accurate information about the last train from Edinburgh Waverley to London, I recommend checking:\n1. The National Rail website (https://www.nationalrail.co.uk)\n2. Train service apps like Citymapper or Trainline\n3. The specific train operator's website (e.g., LNER)\n\nWould you like help with anything related to Edinburgh pubs, weather, or event planning instead"
 

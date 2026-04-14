@@ -131,7 +131,7 @@ I tested the cutoff guird my trying to test rasa for this i uncommented the cuto
                 "it is past 16:45 — insufficient time to process the confirmation"
                 " before the 5 PM deadline"
             )
-            
+
 """
 
 # ── CALM vs Old Rasa ───────────────────────────────────────────────────────
@@ -168,11 +168,12 @@ Think about:
 # That setup bought you something specific.
 # Min 40 words.
 
-SETUP_COST_VALUE = """
-FILL ME IN
 
-Be specific. What can the Rasa CALM agent NOT do that LangGraph could?
-Is that a feature or a limitation for the confirmation use case?
-Think about: can the CALM agent improvise a response it wasn't trained on?
-Can it call a tool that wasn't defined in flows.yml?
+SETUP_COST_VALUE = """
+The CALM agent is a more structured agent than langGraph one but it cannot trigger flows that are not defined in the 
+flow.yml and it canot call tyhe tools that are not defined in flows.yml. In the flows.yml there were 2 flows , confirm_booking
+and handle_out_of_scope there is not way for it to do anything outside of these two flow .For langgraph although no specific flow 
+was defined it was ablt to look at the available tolls and see that it cannot fullfill the request  and was able to give a 
+helpful answer by reasoning .
+
 """

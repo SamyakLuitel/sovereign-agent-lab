@@ -57,7 +57,7 @@ it is also a pub. The only thing that made it a wrong answer is that the status=
 
 # Did the exercise run Part C (small model)?
 # Check outputs/ex1_results.json → "part_c_was_run"
-PART_C_WAS_RUN = None   # True or False
+PART_C_WAS_RUN = True   # True or False
 
 PART_C_PLAIN_ANSWER    = "Haymarket Vaults"
 PART_C_XML_ANSWER      = "The Haymarket Vaults"
